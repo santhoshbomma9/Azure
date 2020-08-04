@@ -1,0 +1,33 @@
+Hardware ( CPU + Memory + Disk) -> Hypervisor ->  VM (OS +APP) 
+Types
+A - Basic for Testing and Development
+A - General Purpose
+B - Burstable - use for peak
+D - General purpose - Enterprise apps, Premium storage
+E - Memory optimized 
+F - CPU Optimized 
+G - Very large data like big data use cases
+H - High performance compute - scientific applications
+L - Storage Optimized
+M - Large Memory
+N - GPU Enabled
+SAP HANA
+
+Specialization
+S -  premium storage
+M - large memory 
+R - remote direct memory
+
+
+Azure Compute Units(ACU) : compare CPU performance between VMS
+Availablity Set - Same data center on different update domains and fault domains
+Availablity Zone - Different Data center (typically every region will have 3 zones)
+ 
+Select inbound ports to open - create rule in NSG RO ATTACH AN NSG
+
+PRIVATE/ PUBLIC IP
+
+Standard HDD/ Standard SSD/ Premium SSD (IOPS and Through-Put)
+Attach a new Disk or existing disk
+
+Managed Disks (HA, SIMPLE BLOB UNDERNEATH, RBAC, STORAGE ENCYPTION, NO THROTTLING LIMITS)
