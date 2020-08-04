@@ -1,0 +1,87 @@
+Get started with Free Account and some credit
+Login using Microsoft account
+Azure AD Directory + Subscription - trust relationship
+	 AD can have multiple subscriptions but each subscription is assigned to only one Directory
+	Can move subscriptions across tenants but a little complex process 
+Add Role assignments for User to  Azure resources 
+
+Enterprise Identity Solution (Azure AD Connect)
+Single Sign-on
+MFA
+Self-service password reset
+ 
+License Free, O365, P1 and P2
+To avoid single point of failure on comms between azure and on prem, implement a dc in azure through vpn gateway
+ 
+
+User 
+Groups
+Roles (Directory(global admin and etc) vs Resource(RBAC roles))
+Implementing as 4 stage https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-admin-roles-secure
+
+App registration (application objects in tenant - global representation of your application - a service principle is created in every tenant its accessed)
+Enterprise Apps (list and manage service principles in your tenant, is a concreate instance which is local representation/app instance of global application object)
+
+App object - many service-principle in different tenants
+
+MFA - something you know, something you are and something you have.  Text, Call, App, App-code, Third-party tokens
+Service principle - Use app registration to create service prinple
+	Role assignment can combine a service principle(user/service) and
+
+Devices
+Customer Domains
+
+External Identities (B2B adding guest users, Azure AD multitenant apps, Azure AD B2C)
+Identity Governance 
+	Automate and create access reviews
+	PIM -> JIT VM, scheduled access/role assignments, alerts and approval
+	Roles 
+	(Azure AD roles and Resource(RBAC) roles)
+	(Permanent, Eligible - can request)
+	
+Security 
+	Identity protection, 
+	MFA policies and 
+	risk policies and risk events, conditional policies
+	
+Mobility (MDM and MAM) -> Intune for devices
+Password Reset -> Self serve password reset
+Application proxy -> to connect on-prem apps from outside your corp network
+
+Azure AD Connect
+	AD DS Sync services -> users and groups 
+		Filtering (can filter what can filter)
+		Authentication:
+			Password hash sync - sync password hash (saved hash in Azure)
+			Pass-through - Authentication request are passed to on-prem
+		Password write back - change password in cloud and it will write back 
+		Device write-back 
+		Prevent accidental deletes
+		Automatic upgrade
+	AD FS(optional) -> domain joined SSO, thirds party MFA
+		Federated Authentication pass the password validation to on-prem ADFS
+	Health monitoring
+		Download AD Connect Health Agent -> send notifications to Global admins
+
+	Cloud Authentication
+		Cloud only
+		Password Hash Sync + Seamless SSO (less effort)
+		Pass-through +Seamless SSO (more effort, must have access to on-prem, can have hash sync as backup)
+	
+	Federation Authentication
+		AD FS ( Azure AD <-> ADDS <-> ADFS)
+		3rd Part Federation providers
+	
+	SSO - Single sign On
+		If logged in with AD DS credentials, users no longer need to login again as the browser knows
+
+
+AD DS
+AD FS
+ACS
+STS
+SAML
+
+https://docs.microsoft.com/en-us/windows-server/identity/identity-and-access
+https://docs.microsoft.com/en-us/azure/active-directory/hybrid/choose-ad-authn#decision-tree
+https://docs.microsoft.com/en-us/azure/active-directory/hybrid/choose-ad-authn#comparing-methods
