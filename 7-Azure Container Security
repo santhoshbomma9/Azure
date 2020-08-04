@@ -1,0 +1,56 @@
+Microservices
+1. Functional decomposition -> Each service is decoupled
+2. Horizontal Scale -> Individual scale services or database
+3. Data decoupling -> Pick best database for the service
+
+Container
+Speed
+Portablity
+Efficiency
+
+Image , Container, Engine, Registry, Control Plane
+
+Azure Container Registry - push images
+      az acr login
+      tag image -> docker tag image acr-loginserver/image:v1
+      docker push acr-loginserver/image:v1
+      
+Azure Kubernetes Service
+      create service principle for AKS to communicate with other Azure services (ACR)
+      service principle give you appid and app secret
+      az role assignment create --assignee appid --scope acr-id --role Reader
+      az aks create --resource-group rg --name name --node-count --service-principle appid --client-secret app-secret -- generate-ssh-keys
+      
+      
+      az aks install-cli
+      az aks get-credential --resourcegroup Az --name demo
+      kubectl get nodes
+      kubectl apply -f file --watch
+      increase pods -> kubectl scale --replicas=5 deployment 
+      increase node count -> az aks scale       
+      you can uograde kubernestes version      
+      Dev Spaces -> share cluster and work in isolation
+      
+      
+Container Security
+RBAC -> AKS roles
+Settings 
+  Access keys
+    username/password -> loginserver access keys
+  Firewalls and Virtual Network
+    Premium sku only
+    Allow access from selected networks
+
+  AKS Security
+    Master Security (Microsoft)
+    Node Secuirty (Customer)
+    Container Secuirty (Customer)
+    
+    Secure Access to AKS (RBAC)
+    Secure Container Access
+    Update AKS Nodes
+  
+  Container scanning
+    Azure Marketplace resources for security -> Twistlock, Aqua - cloud native security platform, Sysdig - 
+    
+
