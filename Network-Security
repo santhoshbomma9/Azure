@@ -1,0 +1,155 @@
+Virtual Network - 
+	Primary building block in Azure Network
+	Private Network in Azure based on an address space prefix
+	Creating Subnets in your VNet  within your address space
+	Use Azure DNS or your own DNS
+	Connect to Vnet to Vnet, Vnet to Internet and Vnet to On-Prem (make sure the address spaces are not overlapped)
+	Understand the default limits per subscription
+
+	Isolation
+	Internet access
+	Azure Resources (VMS)
+	Vnet Connectivity
+	On-premises Connectivity
+	Traffic Filter (NSGs)
+	Routing (Default, Gateway, User)
+	
+Others work too but Ideal Usable ip ranges
+• 10.0.0.0 - 10.255.255.255 (10/8 prefix)
+• 172.16.0.0 - 172.31.255.255 (172.16/12 prefix)
+• 192.168.0.0 - 192.168.255.255 (192.168/16 prefix)
+
+Traffic flow
+Vnet -> SubNet -> Route -> NSG -> NIC -> NSG -> VM
+
+
+User defined Routes
+	Create Route table -> Create Route(where its going and whats the Next hop(e.g. VPN applicance))
+	Associate with a Subnet
+	
+Vnet peering
+	Traffic goes through Microsoft backbone infrastructure not Internet or Gateway
+	Peering is one way connectivity, Add peering from both side of Vnets
+	Allowed forwarded traffic, destined to this VNET but came from outside of the peer
+	Allowed Gateway transit enables A virtual network to use the VPN gateway on the peered virtual network for cross-premises connectivity,  only one Vnet in the peer can have a VPN gateway enabled.
+	Configure the peering connection in each spoke to use remote gateways.
+
+
+
+Network Security
+		
+	Network Access Control
+		NSG(ip/application security group, service tags) 
+			Like traffic filter
+			Inbound rules and Outbound rules
+			Can be associated at Subnet and NIC level
+			Rule precedence for Outbound first NIC NSG is applied and Inbound Subnet NSG is applied
+			Inbound/Outbound Allow/Deny -> Priority, Protocol, Source and Destination port, Source and Destination
+			Lower priority number higher the Priority
+			IP, Service Tags, ASG(Application Security Group)
+			NSG Default Tags -> Vnet, Azure LB, Internet
+		Azure Security center - JIT VM access
+		Service endpoints 
+		Control routing behavior on Vnets with custom behaviour
+		Forced tunneling to direct traffic on-prem before going to internet for inspection and audting
+		Virtual Network Security applicances
+	
+	Azure Firewall
+		Cloud based Network security service
+		Fully stateful firewall service
+		When NSG is just isnt enough and compliance reasons
+		Built in HA
+		Avaialblity Zone
+		You can limit Outbound to a FQDN and wild cards
+		Network traffic filtering rules
+		FQDN tags(like windows update)
+		Service Tags(Microsoft Managed)
+		Threat Intelligence (ML working behind the scenes)
+		SNAT/DNAT support
+		Route though Network, application traffic and Onprem inbound/outbound access
+		Example
+		Vnet                    10.0.0.0/16
+		WorkloadSubnet 10.0.2.0/24 -> custom route  0.0.0.0/0 to Nexthop 10.0.1.0/16(firewall public ip)
+		FirewallSunbet     10.0.1.0/24  -> firewall rules -> 
+								App rule: 10.0.2.0/24, http,https, Target FQDNS (google.com)
+								Network Rule: Allow-DNS, UDP, 10.0.2.0/24, DNS IP address (update DNS for you NIC)
+								NAT Rule: 
+		
+		
+	Secure remote access and cross prem connectivity
+		Point to Site
+		Site to Site (VPN through internet)
+		Express Route (VPN with dedicated WAN)
+	
+	Avaiablity and Global Traffic Routing 
+		Application Gateway (Layer 7, HTTPS, HTTPS, TLS Offloading, WAF, NSG) (Regional, HTTP(S))
+			Standard, WAF - Feature Tier
+			Small, medium, large -  Traffic SKU
+			Cookie Bases Sessions Affinity (** if using app gateway in front of load balancer)
+			SSL offload
+			End to End SSL (terminates SSL, decrypts and re-encrypts and sends)
+			WAF (Web Application Firewall)
+			URL based content routing
+			Needs its own Subnet
+			
+			Frontend-ip (public/ private)
+			Listeners
+			Rules
+			Health probes
+			BackendPools + HTTP Settings for Custom Probes
+			
+		Load Balancer (Layer 4, TCP, UDP, NSG)  Regional non-HTTP(s)
+			Basic vs Standard
+			Service Monitoring -backend pool
+			Hash based distribution (source ip, destination ip and others)
+			Session stickiness
+			Internal(IP) and Public Load balancer 
+			Same connection - just acts like reverse proxy
+			
+			FrontEndIP (Public and Internal(will be placed in a Vnet and Subnet))
+			BackendPools (Avail-set, VM, ScaleSet)
+			Health probes 
+			Load Balancing Rules (Map Fronent End to Backendpool) - Session-Persistence
+			NAT Rules (Map Frontent End to Individual IP)
+			
+		Traffic Manager (DNS level Global, non-HTTP(s))
+			Any protocol, VMs, Webapps, External endpoints
+			Probe HTTP/HTTPS
+		Azure Front Door ( Layer 7, Global, SSL offload, path-based routing, fast failover, caching, HTTP(s))
+		
+	Name Resolution
+		Azure-provided or Azure private DNS or Customer managed
+		
+	DD0S
+		Distributed Denial of Service
+		Disruption of Avaiablity of a target
+		Azure provides defense - 
+			Basic (Automatically enabled) 
+			Standard
+				Volumetric attacks
+				Protocol attacks 
+				Resource layer attackers (SQL injection, XXS)
+				Adaptive tuning
+				Mitigation scale
+				Metrics' and Alerting and DDoS protection team
+			
+	Monitoring and Threat Detection
+	Logging and Auditing
+		Network watcher
+			Network watcher agent extension should be installed on a VM
+			Enable for regions
+			View Vnet topology - VNet diagram
+			Connection monitor - track connection between two VMS - 
+							reachable and probes and hops
+							Topology view
+			Network performance monitor - workspace to monitor hybrid connections
+			IP flow verify - check if a packet inbound/outbound flow is allowed or not
+			Security Group View -  All the effective rules for Subnet or NIC rules
+			Next hop - Check the vm-ip to see the next hop destination
+			VPN troubleshoot
+			Packet capture - store packets into storage account
+			Connection troubleshoot
+			
+	Another good VM extensions
+	Antimalware
+	Performance
