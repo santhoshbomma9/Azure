@@ -1,0 +1,118 @@
+Hardware ( CPU + Memory + Disk) -> Hypervisor ->  VM (OS +APP) 
+Types
+A - Basic for Testing and Development
+A - General Purpose
+B - Burstable - use for peak
+D - General purpose - Enterprise apps, Premium storage
+E - Memory optimized 
+F - CPU Optimized 
+G - Very large data like big data use cases
+H - High performance compute - scientific applications
+L - Storage Optimized
+M - Large Memory
+N - GPU Enabled
+SAP HANA
+
+Specialization
+S -  premium storage
+M - large memory 
+R - remote direct memory
+
+
+Azure Compute Units(ACU) : compare CPU performance between VMS
+
+Options when creating a VM
+
+Availablity Set - Same data center on different update domains and fault domains
+Availablity Zone - Different Data center (typically every region will have 3 zones)
+ 
+Select inbound ports to open - create rule in NSG RO ATTACH AN NSG
+PRIVATE/ PUBLIC IP
+Standard HDD/ Standard SSD/ Premium SSD (IOPS and Through-Put) Attach a new Disk or existing disk
+Managed Disks (HA, SIMPLE BLOB UNDERNEATH, RBAC, STORAGE ENCYPTION, NO THROTTLING LIMITS)
+Accelrated Networking by passes a layr for some VM skus
+VM can be placed behind Load Balancer
+Boot Diagnotics
+OS-guest diagnostics (guest level metrics)
+Identity - Managed Identity
+Auto shutdown
+Bakcup - choose Recovery vault and policy
+Guest config - extension - chef puppet and things like that
+Azure Active Directory(preview), Azure AD, MFA, RBAC
+
+Connect to VM by RDP or WinRM
+WinRMHttps                  WinRmHttp
+Connection over SSL         No SSL required
+port 5986                   port 5985
+
+Setting up WinRM
+KeyVault -> Certificate -> Upload to Keyvault -> URL for KeyVault -> Use certificate when creating the certificate
+
+DISK  ENCRYPTION
+Windows -Bit-lokcer and Linux-(DM-Crypt)
+Integrates with Keyvault
+
+Pre-requites
+Support VM sizes
+Supported OS
+Netwoorking (Be able Connect to KeyVault)
+KeyVault - Enable for Encryption, Enable for Deployment and Enable for template deployment
+Powershell, Az CLI or ARM template
+
+On New VMS
+Existing VMS
+Windows Scale sets
+Linux scale sets data drives
+Managed disk VMS
+Bakcup and restoring encrypted VMS
+BYOE(Encryption) and BYOK(Key)
+
+ Not supported
+Classiv VM not supported
+Cannot disable encryption on obth OS/Data disks when OS is encrypted
+Encrypting OS drive for linux scale sets not supported
+Software-based RAID systems cannot encyrpted
+Custom images on Linux VMS
+Integration with on-prem key management systems
+Azure Files not supported
+Network files
+Dynamic Volumes
+Epheral OS disks
+
+
+VM Best Practices
+Control VM access ->  Azure polices + Apply them to resource groups
+Reduce vairablity in your setup and deployment of VMS -> USE ARM template
+Secure privileged access -> Use least privilege approach, use the right RBAC
+Availablity -> Use availablity sets and Availablity Zones
+Use End point protection -> Prevent virus and other malware protection 
+Keep VMs current -> Update Management solutions in Azure Automation
+Ensure deployment that are built with most recent round of Windows updates
+Deploy and test a backup solution
+Monitor your VM security -> Azure monitor, know your security posture
+Monitor VM performance -> Create alerts and enforce logging for your VMS, examine nab-normal activity
+Disk Encryption -> Enable encryption on VMS, use keyvault in same region
+Prevent inadvertant exposure to network routing and security -> Use RBAC only network group has permission
+Identify and remediate exposed VMS -> Use Azure security center "any" source endpoint ip
+Restrict management ports(RDP, SSH) -> Use Justintime VM access to only enable ports when needed
+
+
+Azure Secuirty Center(built on top of loganlytics for data purposes) -> Compute and Apps -> Use Stadard in price and settings
+     Create Log Analytics and connect a VM (From VM or Log Analytics or Security Center)
+
+
+
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
