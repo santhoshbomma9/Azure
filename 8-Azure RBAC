@@ -1,0 +1,17 @@
+ Azure RBAC 
+ Roles assignment = Role(assignable resource scope + actions) +  Azure AD Principle(Users, groups and Service principles)
+ Eg roles Owner,  Contributer,  Reader lot more built in roles
+ 
+   Actions/Non-Actions: what type of operation can be done
+            Write - put, post, patch, delte
+            Read - GET
+          
+  Azure Policy
+        Enforce governance
+        Built-in or Customer code
+        Assigned to Subscriptions or Resource Groups
+        Create -> Assign
+        
+        
+  
+ 
