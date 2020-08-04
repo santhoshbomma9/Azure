@@ -1,0 +1,32 @@
+Layers approach security
+
+CIA -> Confidentiality + Integrity + Availability
+Confidentiality -> principle of least principle
+Integrity -> Prevention unauthorized changes to data at rest and in-transit
+Availability -> Services Availability, DDoS protection, HA and DR 
+
+
+Security Layers
+
+Physical Security -> Microsoft building and hardware security
+Identity and Access -> Authenticate (who)/ Authorize(what you can do), Audit changes
+Perimeter -> DDoS attacks protection, Firewalls at the perimeter
+Network -> Limit communication, Deny by default, restrict inboud internet access and limit outbound, allow only whats required, NSGs
+Compute -> Updates, Endpoint protection,  access to OS
+Application  -> Ensure apps are secure, store secrets to Key vault
+Data -> Disk encryption and Encrypted in transit
+
+Compliance and Security requirements
+
+Shared responsibility model - it’s a joint responsibility between Cloud Provider and Cloud Customer
+Responsivity Shifts towards Cloud providers as we go IaaS -> PaaS -> SaaS
+
+Zero trust principle -> Identities, Devices, Applications, Data, Infra, Network
+
+You are always responsible
+Data, Endpoints, Accounts, Access Management
+
+Microsoft Trust center -> audits, whitepapers, security assessments, compliance and privacy for all Cloud Services 
+Service Trust - Docs
+Compliance manager -> provides insights and actions and prepare compliance reports
+Blueprints -> Help achieve compliance
