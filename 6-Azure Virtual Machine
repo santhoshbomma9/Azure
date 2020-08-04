@@ -100,7 +100,8 @@ Restrict management ports(RDP, SSH) -> Use Justintime VM access to only enable p
 Azure Secuirty Center(built on top of loganlytics for data purposes) -> Compute and Apps -> Use Stadard in price and settings
      Create Log Analytics and connect a VM (From VM or Log Analytics or Security Center)
 
-
+VM -> Recommendation, Passed assesments and Unavailable assesments
+   -> Quick fix from Secuirty center
 
 
     
