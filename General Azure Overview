@@ -1,0 +1,59 @@
+Azure Cloud shifting of responsibility from Datacenter to Apps
+Azure Data center regions
+Regions Services Avaliabity
+Regions Paired
+Resource Groups - logical container, deleting takes everything off
+
+Fundamental networking
+Vnet -> Subnet -> NIC -> VM
+Complete Isolation
+Internet Access by default
+Optional Public ip
+VNET Connectivity -> Vent peering , VPN gateway and Express Route
+Traffic Filter (NSG)
+Route Traffic to Virtual Appliance (Custom Routes)
+
+IaaS
+VMS -> Deploy Anything like any other VM
+
+PaaS
+App Services
+	WebApps
+	Mobile Apps
+	Functions (pieces of code (Serverless)
+	Logic Apps (pieces of code (UI connectors)
+	Containers (AKS)
+	
+Database Services
+	Azure SQL
+	SQL Managed Instances
+	Azure Database for Postgre SQL
+	Azure Database for MySQL
+	Combos DB
+	Redis Cache
+
+Storage
+	Blob - images videos anything
+	Table
+	File 
+	Message
+	
+Load Balance
+	Front Door
+	Traffic Manager
+	Application Gateway
+	Load Balancer
+	
+Event vs Messaging
+	Event Grid
+	Event Hubs
+	Service Bus
+	
+Other Services
+	ML and AI
+	IoT
+	Identity (Azure AD)
+	Operations (Log analytics)
+	Security (Monitor)
+	
+Access -> Azure portal, PowerShell and Azure CLI
