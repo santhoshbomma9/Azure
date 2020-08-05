@@ -33,10 +33,15 @@ HI-trust Complaint Services: https://azure.microsoft.com/en-us/blog/azure-dramat
 
 
 Log Analytics: Logging tool, Is used by (Monitor, Security Center and Sentinel)
+
 Application Insights: App performance monitoring tool, future integrate appinsights to log analytics
+
 Azure Monitor: Create alerts without sending to Log Analytics. Comes from Log Analytics and App insights
+
 Azure Security Center: Preventive Security measures 
+
 Azure Sentinel : Security, Information, Event, Management system (SIEM tool)
+
 
 
 
