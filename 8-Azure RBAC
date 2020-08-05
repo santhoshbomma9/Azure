@@ -12,6 +12,15 @@
         Assigned to Subscriptions or Resource Groups
         Create -> Assign
         
+        Azure policy Format
+        If
+           not (not | allof | anyof)
+        then
+           effect (deny | append | auditIfNotExits | deployIfNotExists | disabled)
         
-  
+  Resource Group Policy -> Policies -> Assign Policy (E.g. Allow only a Region for deployment)
+  Subscription Policy -> Policies -> Assign Policy (E.g. Allow only some VM SKUS)
+  Management Group Policy -> Policies
+         
+  Resource Lock - Delete, Readonly
  
