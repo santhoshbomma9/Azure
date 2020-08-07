@@ -1,0 +1,87 @@
+Azure Monitor
+        Monitor and Vizualize Metrics
+        Query & Analyze Logs
+        Setup Alerts and Actions
+
+        
+Metrics -> Numerical value thats describes some apsect of a resource at a particular point
+Logs -> Logs contain different kinds of data organized into records with different sets of proporties of each type
+
+Create Alert ->
+    Resource -> Filter on Resource
+    Condition -> Metric/ActivityLog and logic
+    Action Groups -> Action Type: Email,SMS,Push,Voice/AzureFunction,LogicApp,WebHook,ITSM,AzAutomationRunbook
+
+Diagnostics settings:
+      Host level metrics are already captured. Diagnotics extension can collect VM data like mVM metrics, logs and other diagnotics info by using an Agent on the machine.
+           
+Agents on VM -> Windows -> Diagnostics extensions (WAD), Log Analytics, Dependency Agent
+             -> Linux -> Diagnostics extensions (LAD), Telegraf, Log Analytics, Dependency Agent
+
+Log Analytics:
+    Central role in Monitoring 
+    Data sources: Other log Analytics Sources (Secuirty center and App Insights)
+    Search queries
+    Output options
+
+Azure Monitor (events and performance)             |                |   Analytics
+VM (events and performance)                        |                |   Dashboards
+Operatuib Manager (from management group agents)   |                |   Logic Apps
+App Insights (app requests abd exceptions)         |  Log Analytics |   Alerts
+Az Security Center (Securit events)                |    (Tables)    |   Power BI
+PS (from runbook)                                  |                |   PS
+Data Collector API (rest api)                      |                |   Log Search API
+
+
+Data sources
+  Custom logs
+  Windows Event logs
+  Windows Perf logs
+  Linux Perf logs
+  IIS logs
+  Syslog
+
+
+Source                                        AZURE MONITOR
+------------------------------------------------------------------------------------------
+Application                                           | Insights(app, vm, monitoring solution)
+OS                                    Metrics ->      | Visualize (dashboard, powerbi, workbooks)
+Azure Resource                  ->                    | Analyze (Metric Analytics, Log Analytics)
+Azure Subscription                    Logs    ->      | Respond (Alerts, Autoscale)
+Azure Tenant                                          | Integrate (Logic Apps, Export APIs)
+Custom Sources
+
+   
+
+VM -> Monitoring -> 
+  Insights
+  Logs
+  Alerts -> Alerts proactively notify you when important conditions are found in your monitoring data. 
+            (Can create alrerts on -> Metric values, Log search queries, Activity log events, Health of the underlying Azure platform, Tests for website availability))
+  Metrics 
+  Diagnostic settings -> Is an Agent in Azure Monitor
+              Collect guest metrics into Azure Monitor Metrics.
+              Send guest logs and metrics to Azure storage for archiving.
+              Send guest logs and metrics to Azure event hubs to send outside of Azure.
+  Activity log -> Platform logs(Resource logs(Diagnotisc settings), Activity logs) provide detailed diagnostic and auditing information for Azure resources and the Azure platform 
+                  Can be forwarded to Send to Log Analytics workspace, Send to Azure Event Hubs, Send to Azure storage
+
+  Connection Monitor
+  
+Create Log Analytics workspace
+Add VMInsights solution to workspace
+Install agnets on VM/VM Scale set
+
+Security Center
+  
+  
+System Center Operations Manager
+Azure Monitor (includes Log Analytics and Application Insights)
+Azure Policy and Azure Blueprints
+Azure Automation
+Azure Logic Apps
+Azure Event Hubs
+ 
+ 
+ 
+ Download Marketplace solutions like Update managent from Azure Marketplace
