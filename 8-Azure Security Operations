@@ -2,21 +2,102 @@ Azure Monitor
         Monitor and Vizualize Metrics
         Query & Analyze Logs
         Setup Alerts and Actions
-
         
 Metrics -> Numerical value thats describes some apsect of a resource at a particular point
 Logs -> Logs contain different kinds of data organized into records with different sets of proporties of each type
-
-Create Alert ->
+Activity Log -> Activtiy of all Azure Resource in that tenancy
+                Diagnostic setting -> archive or send to log analytics
+Alerts -> Create an Alert
     Resource -> Filter on Resource
     Condition -> Metric/ActivityLog and logic
     Action Groups -> Action Type: Email,SMS,Push,Voice/AzureFunction,LogicApp,WebHook,ITSM,AzAutomationRunbook
+Workbooks -> Query data from muliple sources, Visualize for reporting and Analysis, combine mulitple for interactive exp
+          -> Supports: Logs, Metrics, Azure Resource Graph, Alerts (Preview), Workload Health, Azure Resource Health, Azure Data Explorer, 
+          -> Visualizations: Text, Charts, Grids, Tiles, Trees, Graphs
+
+Supports:
+Azure virtual machines
+Azure virtual machine scale sets
+Hybrid virtual machines connected with Azure Arc
+On-premises virtual machines
+Virtual machines hosted in another cloud environment
 
 Diagnostics settings:
-      Host level metrics are already captured. Diagnotics extension can collect VM data like mVM metrics, logs and other diagnotics info by using an Agent on the machine.
+      Host level metrics are already captured. 
+      This will install Diagnotics extension which can collect VM data like VM metrics, logs and other diagnotics info by using an Agent on the machine.
+      Use Sinks to send data to AzMonitor and Application Insights
            
-Agents on VM -> Windows -> Diagnostics extensions (WAD), Log Analytics, Dependency Agent
-             -> Linux -> Diagnostics extensions (LAD), Telegraf, Log Analytics, Dependency Agent
+Agents on VM -> Windows -> Diagnostics extensions (WAD)
+                                Can Connect to: Azure
+                                Can Collect:    Event Logs, ETW events, Performance, File based logs,IIS logs, .NET app logs,Crash dumps, Agent diagnostics logs	
+                                Data sent to:   Azure Storage, Az Monitor Metrics, Event Hub
+                           
+                        -> Log Analytics(MMA),                
+                                Can Connect to: Azure, On-prem, Other Cloud
+                                Can Collect:    Event Logs, Performance,File based logs,Insights and solutions,Other services
+                                Data sent to:   Az Monitor Logs
+
+                        ->  Dependency Agent
+                                Can Connect to: Azure, On-prem, Other Cloud
+                                Requires:       Log Analytics agent
+                                Can Collect:    Process details and dependencies, Network connection metrics
+                                Data sent to:   Az Monitor Logs
+
+
+             -> Linux   -> Diagnostics extensions (LAD)
+                                Can Connect to: Azure
+                                Requires:       Log Analytics agent
+                                Can Collect:    Syslog, Performance
+                                Data sent to:   Azure Storage, Event Hub
+                        -> Telegraf 
+                                Can Connect to: Azure, On-prem, Other Cloud
+                                Can Collect:    Performance
+                                Data sent to:   Az Monitor Metrics
+                        -> Log Analytics 
+                                Can Connect to: Azure, On-prem, Other Cloud
+                                Can Collect:    Sys log, Performance
+                                Data sent to:   Az Monitor Logs
+                        -> Dependency Agent
+                                Can Connect to: Azure, On-prem, Other Cloud
+                                Requires:       Log Analytics agent
+                                Can Collect:    Process details and dependencies, Network connection metrics
+                                Data sent to:   Az Monitor Logs
+             
+
+No configuration	
+        - Host platform metrics collected to Metrics.
+        - Activity log collected.	
+        - Metrics explorer for host.
+        - Metrics alerts for host.
+        - Activity log alerts.
+
+Create diagnostic setting for virtual machine	
+        - Platform metrics collected to Logs.
+        - Activity log collected to Logs.	
+        - Loq queries for host metrics.
+        - Log alerts for host metrics.
+        - Log queries for Activity log.
+
+Install the diagnostics extension and telegraf agent	
+        - Guest performance data collected to Metrics.	
+        - Metrics explorer for guest.
+        - Metrics alerts for guest.
+
+Configure Log Analytics workspace	
+        - Events collected from guest.	
+        - Log queries for guest events.
+        - Log alerts for guest events.
+
+Enable Azure Monitor for VMs	
+        - Log Analytics agent installed.
+        - Dependency agent installed.
+        - Guest performance data collected to Logs.
+        - Process and dependency details collected to Logs.	
+        - Performance charts and workbooks for guest performance data.
+        - Log queries for guest performance data.
+        - Log alerts for guest performance data.
+        - Dependency map.
+
 
 Log Analytics:
     Central role in Monitoring 
@@ -33,15 +114,6 @@ PS (from runbook)                                  |                |   PS
 Data Collector API (rest api)                      |                |   Log Search API
 
 
-Data sources
-  Custom logs
-  Windows Event logs
-  Windows Perf logs
-  Linux Perf logs
-  IIS logs
-  Syslog
-
-
 Source                                        AZURE MONITOR
 ------------------------------------------------------------------------------------------
 Application                                           | Insights(app, vm, monitoring solution)
@@ -54,11 +126,11 @@ Custom Sources
    
 
 VM -> Monitoring -> 
-  Insights
-  Logs
+  Insights  (Microsoft Monitoring Agent (MMA))- Log Analytics
+  Logs -> Logs Explorer
   Alerts -> Alerts proactively notify you when important conditions are found in your monitoring data. 
             (Can create alrerts on -> Metric values, Log search queries, Activity log events, Health of the underlying Azure platform, Tests for website availability))
-  Metrics 
+  Metrics -> Merics Explorer
   Diagnostic settings -> Is an Agent in Azure Monitor
               Collect guest metrics into Azure Monitor Metrics.
               Send guest logs and metrics to Azure storage for archiving.
@@ -66,14 +138,19 @@ VM -> Monitoring ->
   Activity log -> Platform logs(Resource logs(Diagnotisc settings), Activity logs) provide detailed diagnostic and auditing information for Azure resources and the Azure platform 
                   Can be forwarded to Send to Log Analytics workspace, Send to Azure Event Hubs, Send to Azure storage
 
-  Connection Monitor
+  Connection Monitor - Monitor connection between VMs                
+  
+
+Boot Diagnostics - to storage account
+Host level - already collected by default
+Diagnotics settings - 
+
   
 Create Log Analytics workspace
 Add VMInsights solution to workspace
 Install agnets on VM/VM Scale set
 
-Security Center
-  
+Security Center  
   
 System Center Operations Manager
 Azure Monitor (includes Log Analytics and Application Insights)
@@ -81,7 +158,6 @@ Azure Policy and Azure Blueprints
 Azure Automation
 Azure Logic Apps
 Azure Event Hubs
- 
- 
+  
  
  Download Marketplace solutions like Update managent, Secuirity and Compliance from Azure Marketplace
