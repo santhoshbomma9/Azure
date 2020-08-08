@@ -23,14 +23,13 @@ On-premises virtual machines
 Virtual machines hosted in another cloud environment
 
 Diagnostics settings:
-      Host level metrics are already captured. 
-      This will install Diagnotics extension which can collect VM data like VM metrics, logs and other diagnotics info by using an Agent on the machine.
+      Host level metrics are already captured. This will install Diagnotics extension which can collect VM data like Gues-level VM metrics, logs and other diagnotics info by using an Agent on the machine.
       Use Sinks to send data to AzMonitor and Application Insights
            
 Agents on VM -> Windows -> Diagnostics extensions (WAD)
                                 Can Connect to: Azure
                                 Can Collect:    Event Logs, ETW events, Performance, File based logs,IIS logs, .NET app logs,Crash dumps, Agent diagnostics logs	
-                                Data sent to:   Azure Storage, Az Monitor Metrics, Event Hub
+                                Data sent to:   Az Monitor Metrics, Azure Storage, Event Hub
                            
                         -> Log Analytics(MMA),                
                                 Can Connect to: Azure, On-prem, Other Cloud
@@ -65,10 +64,10 @@ Agents on VM -> Windows -> Diagnostics extensions (WAD)
              
 
 No configuration	
-        - Host platform metrics collected to Metrics.
-        - Activity log collected.	
+        - Host platform metrics collected to Metrics.        
         - Metrics explorer for host.
         - Metrics alerts for host.
+        - Activity log collected.	
         - Activity log alerts.
 
 Create diagnostic setting for virtual machine	
