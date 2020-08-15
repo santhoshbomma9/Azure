@@ -1,0 +1,32 @@
+Authentication
+---------------------
+Kerboros -> Ticketing based system between client -----tgt--> Ticket distriburtion cetner (dc) -> Server
+  password is not send, but a packet is encrypted with password and sent
+  if the packet is decrypted by the dc, then it will grant tickets to requested resource
+NTLM
+  -> User challenge resonse authentication
+  -> Why use this instead of Kerberos
+        ->When Kerberos is not supported NTML is next best option , like
+            -> client is authentication by ip address instead of domain name
+            -> if no Kerberos trust between two forests
+            -> One or both computers are not in domain
+            -> If Kerberos ports are blocked by Firewall
+Certificates
+  -> public private keys
+SmartCards (mfa)
+  -> uses certificates
+  -> comes with MFA
+Biometrics
+  -> Finger print or eye scan
+
+Authorization
+----------------------
+Built-in Groups
+      Permissions -> Assigned to resource
+      Policies -> Assigned to user/computer
+      Rights -> assigned to computer
+
+
+Credential manager
+  -> saves credentials 
+  -> username passeords are not prompted
