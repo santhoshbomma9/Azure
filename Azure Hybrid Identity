@@ -38,6 +38,7 @@ Cloud Authentication
         Agents are installed - no management, agent makes only outbound calls to the queue (pub-sub model), 
         password requests are put in a queue 
         Enforce on-prem AD level security policies
+        Custom Domain name is required
         Use + Password Hash sync for Leaked credentials report on dark web
         
   Federated Authentication
