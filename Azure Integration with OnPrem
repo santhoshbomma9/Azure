@@ -1,0 +1,16 @@
+https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/identity/
+
+Two Solutions
+  Use AD Connect to Sync On-prem objects to Cloud  (1)
+  Extend your on-prem AD to Azure by running AD DS as a domain controller.
+        This will reduce the network latency for sending authentication to on-prem
+        Most common when you implment VPN or Express Route connection from on-prem network to Azure VNet
+        Types
+          Create a domain and join to onprem forest (2)
+          Create forest and trusted by domains in on-premis forest (3)
+          Replicate an ADFS to Azure  (4)
+          
+Pros and Cons
+  ADConnect 
+    Pros -> No need to maintain cloud infra, 
+    Cons -> maintaing Sync betwen 
