@@ -1,0 +1,56 @@
+
+Application Authentication Scenarios
+----------------------------------------
+Single Page App SPA   -> Regsiter App + quickstart sign in/call Api pattern + configure API permissions
+Mobile App -> Regsiter App + quickstart sign in/call Api pattern + configure API permissions
+
+WebApp that signins users -> Regsiter App + quickstart sign in/call Api pattern + Validate IdToken + Configre secerts & certs + configure API Permissions + Conroll acces to webapp + Store token cache
+WebApp that calls a WebAPI -> same as above
+
+Protected WebAPI -> dont need quick starts -> same as above but validate Accesstoken + Controll access to web API
+WebApis that call WebApis -> same as above
+
+Desktop App -> Register App + complete quick start + Configure secrets + Configure permissions & call API of choice
+Deamon App  -> Register App + quickstart sign in/call Api pattern + configure permissions + acquire token interactively + aquire token device code flow or win intergated + Call Api of choice + store toekn cache  
+
+Authentication and Authorization
+-------------------------------------
+AuthN- process of saying who you are
+AuthZ- granting permissions to do something (Microsoft Identity platform uses OAuth 2.0 for handling authorization)
+
+
+Azure AD is a centralized identity provider (Idp) for delegating authentication and authorization -> conditional access polices + MFA + SSOs
+
+AD Authentication and Authorization
+Authentication
+---------------------
+Kerboros -> Ticketing based system between client -----tgt--> Ticket distriburtion cetner (dc) -> Server
+  password is not send, but a packet is encrypted with password and sent
+  if the packet is decrypted by the dc, then it will grant tickets to requested resource
+NTLM
+  -> User challenge resonse authentication
+  -> Why use this instead of Kerberos
+        ->When Kerberos is not supported NTML is next best option , like
+            -> client is authentication by ip address instead of domain name
+            -> if no Kerberos trust between two forests
+            -> One or both computers are not in domain
+            -> If Kerberos ports are blocked by Firewall
+Certificates
+  -> public private keys
+SmartCards (mfa)
+  -> uses certificates
+  -> comes with MFA
+Biometrics
+  -> Finger print or eye scan
+
+Authorization
+----------------------
+Built-in Groups
+      Permissions -> Assigned to resource
+      Policies -> Assigned to user/computer
+      Rights -> assigned to computer
+
+
+Credential manager
+  -> saves credentials 
+  -> username passeords are not prompted
